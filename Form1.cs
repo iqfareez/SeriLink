@@ -19,10 +19,88 @@ namespace SeriLink
         {
             lineEndingComboBox.SelectedIndex = 3; // set default to
             baudComboBox.SelectedItem = "9600";
-            refreshPorts();
+            RefreshPorts();
         }
 
         private void sendButton_Click(object sender, EventArgs e)
+        {
+            SendMessage();
+        }
+        
+        private void input_textbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!_connectedSerial) return;
+            
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendMessage();
+            }
+        }
+
+        private void clearConsoleButton_Click(object sender, EventArgs e)
+        {
+            monitorTextbox.Clear();
+        }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            RefreshPorts();
+        }
+
+        private void RefreshPorts()
+        {
+            // Get a list of serial port names.
+            string[] ports = SerialPort.GetPortNames();
+
+            // set the ports to the portsComboBox
+            portsComboBox.Items.Clear();
+            portsComboBox.Items.AddRange(ports);
+
+            // if there are ports, select the first one
+            if (ports.Length > 0)
+                portsComboBox.SelectedIndex = 0;
+            else
+                connectButton.Enabled = false;
+        }
+
+        private void connectButton_Click(object sender, EventArgs e)
+        {
+            if (!_connectedSerial)
+            {
+                // Connect the selected port
+                var targetPort = portsComboBox.SelectedItem;
+                if (targetPort != null)
+                {
+                    OpenSerialPort(port: targetPort.ToString());
+                }
+
+                return;
+            }
+
+            // Disconnect the port
+            CloseSerialPort();
+        }
+
+
+        private void OpenSerialPort(String port)
+        {
+            _mySerial = new SerialPort(port);
+            _mySerial.BaudRate = int.Parse(baudComboBox.SelectedItem.ToString());
+            _mySerial.Open();
+            _mySerial.DataReceived += MySerial_DataReceived;
+
+            // enable input button and disable refresh button
+            input_textbox.ReadOnly = false;
+            sendButton.Enabled = true;
+            refreshButton.Enabled = false;
+            monitorTextbox.Enabled = true;
+            monitorTextbox.BackColor = System.Drawing.SystemColors.Window;
+
+            connectButton.Text = "Disconnect";
+            _connectedSerial = true;
+        }
+
+        private void SendMessage()
         {
             // by default, the text includes newline at the start
             // so we trim it
@@ -51,75 +129,12 @@ namespace SeriLink
                 input_textbox.Clear();
         }
 
-        private void clearConsoleButton_Click(object sender, EventArgs e)
-        {
-            monitorTextbox.Clear();
-        }
-
-        private void refreshButton_Click(object sender, EventArgs e)
-        {
-            refreshPorts();
-        }
-
-        private void refreshPorts()
-        {
-            // Get a list of serial port names.
-            string[] ports = SerialPort.GetPortNames();
-
-            // set the ports to the portsComboBox
-            portsComboBox.Items.Clear();
-            portsComboBox.Items.AddRange(ports);
-
-            // if there are ports, select the first one
-            if (ports.Length > 0)
-                portsComboBox.SelectedIndex = 0;
-            else
-                connectButton.Enabled = false;
-        }
-
-        private void connectButton_Click(object sender, EventArgs e)
-        {
-            if (!_connectedSerial)
-            {
-                // Connect the selected port
-                var targetPort = portsComboBox.SelectedItem;
-                if (targetPort != null)
-                {
-                    openSerialPort(port: targetPort.ToString());
-                }
-
-                return;
-            }
-
-            // Disconnect the port
-            closeSerialPort();
-        }
-
-
-        private void openSerialPort(String port)
-        {
-            _mySerial = new SerialPort(port);
-            _mySerial.BaudRate = int.Parse(baudComboBox.SelectedItem.ToString());
-            _mySerial.Open();
-            _mySerial.DataReceived += MySerial_DataReceived;
-
-            // enable input button and disable refresh button
-            input_textbox.ReadOnly = false;
-            sendButton.Enabled = true;
-            refreshButton.Enabled = false;
-            monitorTextbox.Enabled = true;
-            monitorTextbox.BackColor = System.Drawing.SystemColors.Window;
-
-            connectButton.Text = "Disconnect";
-            _connectedSerial = true;
-        }
-
         private void MySerial_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             monitorTextbox.AppendText(_mySerial.ReadExisting());
         }
 
-        private void closeSerialPort()
+        private void CloseSerialPort()
         {
             _mySerial.Close();
             _mySerial.Dispose();
