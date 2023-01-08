@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "SeriLink Serial Monitor"
-#define MyAppVersion "0.0.1.0"
+#define MyAppVersion "0.0.2.0"
 #define MyAppPublisher "Muhammad Fareez"
 #define MyAppURL "https://iqfareez.com"
 #define MyAppExeName "SeriLink.exe"

@@ -76,8 +76,10 @@
             this.monitorTextbox.Multiline = true;
             this.monitorTextbox.Name = "monitorTextbox";
             this.monitorTextbox.ReadOnly = true;
+            this.monitorTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.monitorTextbox.Size = new System.Drawing.Size(698, 348);
             this.monitorTextbox.TabIndex = 3;
+            this.monitorTextbox.WordWrap = false;
             // 
             // clearConsoleButton
             // 

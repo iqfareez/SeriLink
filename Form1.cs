@@ -85,6 +85,8 @@ namespace SeriLink
         private void OpenSerialPort(String port)
         {
             _mySerial = new SerialPort(port);
+            // baud rate supported on Windows? 
+            // https://learn.microsoft.com/en-us/windows/win32/api/winbase/ns-winbase-commprop
             _mySerial.BaudRate = int.Parse(baudComboBox.SelectedItem.ToString());
             _mySerial.Open();
             _mySerial.DataReceived += MySerial_DataReceived;
