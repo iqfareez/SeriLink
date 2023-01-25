@@ -11,13 +11,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5918df5-e8cf-4811-9f7c-70bfe136fe99" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Form1.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Form1.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Form1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SeriLink/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SeriLink/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock://D:/Iqmal/Documents/RiderProjects/SeriLink/Form1.Designer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Iqmal/Documents/RiderProjects/SeriLink/Form1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Iqmal/Documents/RiderProjects/SeriLink/Properties/AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/Iqmal/Documents/RiderProjects/SeriLink/Properties/AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -30,20 +35,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="SeriLink" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -84,7 +90,7 @@
       <workItem from="1672961648175" duration="3479000" />
       <workItem from="1672986408326" duration="548000" />
       <workItem from="1673142944747" duration="1288000" />
-      <workItem from="1673149341042" duration="2180000" />
+      <workItem from="1673149341042" duration="3400000" />
     </task>
     <task id="LOCAL-00001" summary=":tada: Initial commit&#10;&#10;Added basic controls and UI&#10;&#10;https://i.imgur.com/jLl2IuA.png">
       <created>1672877318942</created>
@@ -114,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672986945772</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary=":bookmark: Release ver 0.0.2.0&#10;&#10;Added scrollbars&#10;disabled wordwrap">
+      <created>1673152858562</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1673152858562</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,6 +153,7 @@
     <MESSAGE value=":construction: Added serial com&#10;&#10;Added connect/disconnect&#10;UI changes&#10;etc." />
     <MESSAGE value=":sparkles: Added enter to send" />
     <MESSAGE value=":bookmark: Release first version" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bookmark: Release first version" />
+    <MESSAGE value=":bookmark: Release ver 0.0.2.0&#10;&#10;Added scrollbars&#10;disabled wordwrap" />
+    <option name="LAST_COMMIT_MESSAGE" value=":bookmark: Release ver 0.0.2.0&#10;&#10;Added scrollbars&#10;disabled wordwrap" />
   </component>
 </project>
