@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.sendButton = new System.Windows.Forms.Button();
             this.input_textbox = new System.Windows.Forms.TextBox();
             this.monitorTextbox = new System.Windows.Forms.TextBox();
@@ -58,11 +59,11 @@
             // input_textbox
             // 
             this.input_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.input_textbox.Font = new System.Drawing.Font("MesloLGL Nerd Font Mono", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.input_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.input_textbox.Location = new System.Drawing.Point(12, 16);
             this.input_textbox.Name = "input_textbox";
             this.input_textbox.ReadOnly = true;
-            this.input_textbox.Size = new System.Drawing.Size(580, 34);
+            this.input_textbox.Size = new System.Drawing.Size(580, 27);
             this.input_textbox.TabIndex = 1;
             this.input_textbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.input_textbox_KeyDown);
             // 
@@ -196,6 +197,7 @@
             this.Controls.Add(this.monitorTextbox);
             this.Controls.Add(this.input_textbox);
             this.Controls.Add(this.sendButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "SeriLink";
             this.Load += new System.EventHandler(this.Form1_Load);
