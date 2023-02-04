@@ -18,7 +18,7 @@ namespace SeriLink
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            lineEndingComboBox.SelectedIndex = 3; // set default to
+            lineEndingComboBox.SelectedIndex = 3; // set default to NL & CR
             baudComboBox.SelectedItem = "9600";
             RefreshPorts();
         }
@@ -89,7 +89,18 @@ namespace SeriLink
             // baud rate supported on Windows? 
             // https://learn.microsoft.com/en-us/windows/win32/api/winbase/ns-winbase-commprop
             _mySerial.BaudRate = int.Parse(baudComboBox.SelectedItem.ToString());
-            _mySerial.Open();
+
+            try
+            {
+                _mySerial.Open();
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                // show error MessageBox with error icon
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
             _mySerial.DataReceived += MySerial_DataReceived;
 
             // enable input button and disable refresh button
