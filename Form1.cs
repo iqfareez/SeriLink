@@ -31,9 +31,10 @@ namespace SeriLink
         private void input_textbox_KeyDown(object sender, KeyEventArgs e)
         {
             if (!_connectedSerial) return;
-
+            
             if (e.KeyCode == Keys.Enter)
             {
+                e.SuppressKeyPress = true; // prevent 'Ding' sound when press enter
                 SendMessage();
             }
         }
