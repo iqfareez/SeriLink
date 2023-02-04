@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.sendButton = new System.Windows.Forms.Button();
             this.input_textbox = new System.Windows.Forms.TextBox();
-            this.monitorTextbox = new System.Windows.Forms.TextBox();
             this.clearConsoleButton = new System.Windows.Forms.Button();
             this.clearInputTextAfterSendCheckbox = new System.Windows.Forms.CheckBox();
             this.lineEndingComboBox = new System.Windows.Forms.ComboBox();
@@ -42,13 +41,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.refreshButton = new System.Windows.Forms.Button();
             this.connectButton = new System.Windows.Forms.Button();
+            this.showInConsoleCheckbox = new System.Windows.Forms.CheckBox();
+            this.monitorTextbox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // sendButton
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.sendButton.Enabled = false;
-            this.sendButton.Location = new System.Drawing.Point(598, 16);
+            this.sendButton.Location = new System.Drawing.Point(588, 16);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(112, 34);
             this.sendButton.TabIndex = 0;
@@ -63,29 +64,14 @@
             this.input_textbox.Location = new System.Drawing.Point(12, 16);
             this.input_textbox.Name = "input_textbox";
             this.input_textbox.ReadOnly = true;
-            this.input_textbox.Size = new System.Drawing.Size(580, 27);
+            this.input_textbox.Size = new System.Drawing.Size(570, 27);
             this.input_textbox.TabIndex = 1;
             this.input_textbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.input_textbox_KeyDown);
-            // 
-            // monitorTextbox
-            // 
-            this.monitorTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.monitorTextbox.BackColor = System.Drawing.SystemColors.Control;
-            this.monitorTextbox.Enabled = false;
-            this.monitorTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monitorTextbox.Location = new System.Drawing.Point(12, 83);
-            this.monitorTextbox.Multiline = true;
-            this.monitorTextbox.Name = "monitorTextbox";
-            this.monitorTextbox.ReadOnly = true;
-            this.monitorTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.monitorTextbox.Size = new System.Drawing.Size(698, 348);
-            this.monitorTextbox.TabIndex = 3;
-            this.monitorTextbox.WordWrap = false;
             // 
             // clearConsoleButton
             // 
             this.clearConsoleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearConsoleButton.Location = new System.Drawing.Point(595, 437);
+            this.clearConsoleButton.Location = new System.Drawing.Point(585, 430);
             this.clearConsoleButton.Name = "clearConsoleButton";
             this.clearConsoleButton.Size = new System.Drawing.Size(115, 32);
             this.clearConsoleButton.TabIndex = 4;
@@ -110,7 +96,7 @@
             this.lineEndingComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lineEndingComboBox.FormattingEnabled = true;
             this.lineEndingComboBox.Items.AddRange(new object[] { "None", "NewLine", "Carriage Return", "NL & CR" });
-            this.lineEndingComboBox.Location = new System.Drawing.Point(598, 53);
+            this.lineEndingComboBox.Location = new System.Drawing.Point(588, 53);
             this.lineEndingComboBox.Name = "lineEndingComboBox";
             this.lineEndingComboBox.Size = new System.Drawing.Size(112, 24);
             this.lineEndingComboBox.TabIndex = 6;
@@ -120,7 +106,7 @@
             this.portsComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.portsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.portsComboBox.FormattingEnabled = true;
-            this.portsComboBox.Location = new System.Drawing.Point(135, 442);
+            this.portsComboBox.Location = new System.Drawing.Point(135, 435);
             this.portsComboBox.Name = "portsComboBox";
             this.portsComboBox.Size = new System.Drawing.Size(92, 24);
             this.portsComboBox.TabIndex = 7;
@@ -132,7 +118,7 @@
             this.baudComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.baudComboBox.FormattingEnabled = true;
             this.baudComboBox.Items.AddRange(new object[] { "300", "600", "1200", "2400", "4800", "9600", "14400", "19200", "28800", "38400", "57600", "115200" });
-            this.baudComboBox.Location = new System.Drawing.Point(285, 442);
+            this.baudComboBox.Location = new System.Drawing.Point(285, 435);
             this.baudComboBox.Name = "baudComboBox";
             this.baudComboBox.Size = new System.Drawing.Size(74, 24);
             this.baudComboBox.TabIndex = 8;
@@ -140,7 +126,7 @@
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.Location = new System.Drawing.Point(235, 442);
+            this.label1.Location = new System.Drawing.Point(235, 435);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 23);
             this.label1.TabIndex = 9;
@@ -150,7 +136,7 @@
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.Location = new System.Drawing.Point(92, 442);
+            this.label2.Location = new System.Drawing.Point(92, 435);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 23);
             this.label2.TabIndex = 10;
@@ -160,7 +146,7 @@
             // refreshButton
             // 
             this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.refreshButton.Location = new System.Drawing.Point(12, 437);
+            this.refreshButton.Location = new System.Drawing.Point(12, 430);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(74, 32);
             this.refreshButton.TabIndex = 11;
@@ -172,7 +158,7 @@
             // 
             this.connectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.connectButton.Enabled = false;
-            this.connectButton.Location = new System.Drawing.Point(365, 437);
+            this.connectButton.Location = new System.Drawing.Point(365, 430);
             this.connectButton.Name = "connectButton";
             this.connectButton.Size = new System.Drawing.Size(87, 32);
             this.connectButton.TabIndex = 12;
@@ -180,11 +166,36 @@
             this.connectButton.UseVisualStyleBackColor = true;
             this.connectButton.Click += new System.EventHandler(this.connectButton_Click);
             // 
+            // showInConsoleCheckbox
+            // 
+            this.showInConsoleCheckbox.Checked = true;
+            this.showInConsoleCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showInConsoleCheckbox.Location = new System.Drawing.Point(156, 53);
+            this.showInConsoleCheckbox.Name = "showInConsoleCheckbox";
+            this.showInConsoleCheckbox.Size = new System.Drawing.Size(148, 24);
+            this.showInConsoleCheckbox.TabIndex = 13;
+            this.showInConsoleCheckbox.Text = "Show in console";
+            this.showInConsoleCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // monitorTextbox
+            // 
+            this.monitorTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.monitorTextbox.Enabled = false;
+            this.monitorTextbox.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monitorTextbox.Location = new System.Drawing.Point(12, 83);
+            this.monitorTextbox.Name = "monitorTextbox";
+            this.monitorTextbox.ReadOnly = true;
+            this.monitorTextbox.Size = new System.Drawing.Size(686, 341);
+            this.monitorTextbox.TabIndex = 14;
+            this.monitorTextbox.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(720, 477);
+            this.ClientSize = new System.Drawing.Size(710, 470);
+            this.Controls.Add(this.monitorTextbox);
+            this.Controls.Add(this.showInConsoleCheckbox);
             this.Controls.Add(this.connectButton);
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.label2);
@@ -194,7 +205,6 @@
             this.Controls.Add(this.lineEndingComboBox);
             this.Controls.Add(this.clearInputTextAfterSendCheckbox);
             this.Controls.Add(this.clearConsoleButton);
-            this.Controls.Add(this.monitorTextbox);
             this.Controls.Add(this.input_textbox);
             this.Controls.Add(this.sendButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -204,6 +214,10 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.RichTextBox monitorTextbox;
+
+        private System.Windows.Forms.CheckBox showInConsoleCheckbox;
 
         private System.Windows.Forms.Button connectButton;
 
@@ -219,8 +233,6 @@
 
         private System.Windows.Forms.Button clearConsoleButton;
         private System.Windows.Forms.CheckBox clearInputTextAfterSendCheckbox;
-
-        private System.Windows.Forms.TextBox monitorTextbox;
 
         private System.Windows.Forms.Button sendButton;
         private System.Windows.Forms.TextBox input_textbox;

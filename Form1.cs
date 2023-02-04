@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO.Ports;
 using System.Windows.Forms;
 
@@ -8,7 +9,7 @@ namespace SeriLink
     public partial class Form1 : Form
     {
         private SerialPort _mySerial;
-        private bool _connectedSerial = false;
+        private bool _connectedSerial;
 
         public Form1()
         {
@@ -26,11 +27,11 @@ namespace SeriLink
         {
             SendMessage();
         }
-        
+
         private void input_textbox_KeyDown(object sender, KeyEventArgs e)
         {
             if (!_connectedSerial) return;
-            
+
             if (e.KeyCode == Keys.Enter)
             {
                 SendMessage();
@@ -96,7 +97,7 @@ namespace SeriLink
             sendButton.Enabled = true;
             refreshButton.Enabled = false;
             monitorTextbox.Enabled = true;
-            monitorTextbox.BackColor = System.Drawing.SystemColors.Window;
+            monitorTextbox.BackColor = SystemColors.Window;
 
             connectButton.Text = "Disconnect";
             _connectedSerial = true;
@@ -122,9 +123,19 @@ namespace SeriLink
                 myMessage += lineEndings[lineEndingComboBox.SelectedIndex];
             }
 
+            Console.WriteLine(myMessage);
+
             // send the message
             _mySerial.Write(myMessage);
 
+            // add send message to the console in green colour
+            if (showInConsoleCheckbox.Checked)
+            {
+                Color sendColor = Color.Green;
+                monitorTextbox.SelectionColor = sendColor;
+                monitorTextbox.SelectionFont = new Font(monitorTextbox.Font, FontStyle.Italic);
+                monitorTextbox.AppendText(myMessage);
+            }
 
             // clear the input field after send if option checked
             if (clearInputTextAfterSendCheckbox.Checked)
@@ -148,7 +159,7 @@ namespace SeriLink
             sendButton.Enabled = false;
             refreshButton.Enabled = true;
             monitorTextbox.Enabled = false;
-            monitorTextbox.BackColor = System.Drawing.SystemColors.Control;
+            monitorTextbox.BackColor = SystemColors.Control;
         }
 
         private void portsComboBox_SelectedIndexChanged(object sender, EventArgs e)
