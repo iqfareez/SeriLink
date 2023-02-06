@@ -8,14 +8,12 @@ SeriLink is an app that allows users to send and receive messages via a COM port
 
 <div style="display: flex; justify-content: center; align-items: center;">
   <div style="float: left; box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2); margin: 10px;">
-    <img src="https://i.imgur.com/w9Oqowp.png" style="display: block;">
+    <img src="https://i.imgur.com/uQWQLUZ.png" style="display: block;">
   </div>
 </div>
 
 ## Installation
-To install and set up SeriLink, follow these steps:
-
-See [Releases](./releases) for info.
+To install and set up SeriLink, you can download the installer from [Releases](./releases).
 
 ## Usage
 To use SeriLink:
@@ -33,8 +31,22 @@ If you are interested in contributing to SeriLink, please follow these guideline
 1. Create a new branch for your feature or bug fix.
 1. Make your changes and commit them to your branch.
 1. Submit a pull request for review.
+
 ## License
 SeriLink is released under the MIT License. See the [LICENSE](./LICENSE) for details
+
+## Development tools
+
+### IDE
+
+- [JetBrains Rider](https://www.jetbrains.com/rider/)
+
+### Other tools
+
+(Optional) I found these tools useful when developing SeriLink:
+
+- [Virtual Serial Port Tools](https://freevirtualserialports.com/)
+- [QtSerialMonitor](https://github.com/mich-w/QtSerialMonitor)
 
 ## Contact
 Find me on Twitter [@iqfareez](https://twitter.com/iqfareez).
