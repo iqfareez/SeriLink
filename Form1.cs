@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO.Ports;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SeriLink
@@ -10,6 +11,10 @@ namespace SeriLink
     {
         private SerialPort _mySerial;
         private bool _connectedSerial;
+        
+        // HashSet of string to store the sent commands
+        private HashSet<string> _sentCommands = new HashSet<string>();
+        private int _sentCommandsIndex;
 
         public Form1()
         {
@@ -36,6 +41,21 @@ namespace SeriLink
             {
                 e.SuppressKeyPress = true; // prevent 'Ding' sound when press enter
                 SendMessage();
+
+                // reset the last command index
+                _sentCommandsIndex = _sentCommands.Count;
+            }
+
+            // if the key is down arrow, get the next command from the sent commands list
+            if (e.KeyCode == Keys.Up)
+            {
+                GoUpHistory();
+            }
+            
+            // same as arrow up key, but go through the history opposite direction
+            if (e.KeyCode == Keys.Down)
+            {
+                GoDownHistory();
             }
         }
 
@@ -148,6 +168,9 @@ namespace SeriLink
                 monitorTextbox.SelectionFont = new Font(monitorTextbox.Font, FontStyle.Italic);
                 monitorTextbox.AppendText(myMessage);
             }
+            
+            // add send message to the sent history if not empty
+            if (myMessage.Length > 0) _sentCommands.Add(myMessage);
 
             // clear the input field after send if option checked
             if (clearInputTextAfterSendCheckbox.Checked)
@@ -180,6 +203,42 @@ namespace SeriLink
             connectButton.Enabled = portsComboBox.SelectedIndex >= 0;
 
             // disable connect button is handled by refreshPorts()
+        }
+
+        private void GoUpHistory()
+        {
+            // decrement the index
+            _sentCommandsIndex--;
+                    
+            // if reach the beginning, reset to the last
+            if (_sentCommandsIndex < 0) _sentCommandsIndex = _sentCommands.Count - 1;
+            
+            // get the next command from the list based on index
+            var nextCommand = _sentCommands.ElementAtOrDefault(_sentCommandsIndex);
+            if (nextCommand != null)
+            {
+                // set the input text to the next command
+                input_textbox.Text = nextCommand;
+                // move the cursor to the end of the text
+                input_textbox.SelectionStart = input_textbox.Text.Length;
+                input_textbox.SelectionLength = 0;
+            }
+        }
+        
+        private void GoDownHistory()
+        {
+            _sentCommandsIndex++;
+                
+            // if reach to the end, reset to the first
+            if (_sentCommandsIndex == _sentCommands.Count) _sentCommandsIndex = 0;
+            
+            var nextCommand = _sentCommands.ElementAtOrDefault(_sentCommandsIndex);
+            if (nextCommand != null)
+            {
+                input_textbox.Text = nextCommand;
+                input_textbox.SelectionStart = input_textbox.Text.Length;
+                input_textbox.SelectionLength = 0;
+            }
         }
     }
 }
