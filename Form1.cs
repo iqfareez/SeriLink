@@ -57,6 +57,13 @@ namespace SeriLink
             {
                 GoDownHistory();
             }
+            
+            // clear the textbox
+            if (e.KeyCode == Keys.Escape)
+            {
+                e.SuppressKeyPress = true; 
+                input_textbox.Clear();
+            } 
         }
 
         private void clearConsoleButton_Click(object sender, EventArgs e)
@@ -102,7 +109,6 @@ namespace SeriLink
             // Disconnect the port
             CloseSerialPort();
         }
-
 
         private void OpenSerialPort(String port)
         {
@@ -170,7 +176,7 @@ namespace SeriLink
             }
             
             // add send message to the sent history if not empty
-            if (myMessage.Length > 0) _sentCommands.Add(myMessage);
+            if (myMessage.Trim().Length > 0) _sentCommands.Add(myMessage);
 
             // clear the input field after send if option checked
             if (clearInputTextAfterSendCheckbox.Checked)
