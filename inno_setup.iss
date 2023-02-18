@@ -4,7 +4,7 @@
 ; Update version in Properties/AssemblyInfo.cs
 #define MyAppName "SeriLink Serial Monitor"
 #define MyAppVersion "0.0.3.0"
-#define MyAppPublisher "Muhammad Fareez"
+#define MyAppPublisher "Muhammad Fareez Iqmal"
 #define MyAppURL "https://github.com/iqfareez/SeriLink"
 #define MyAppExeName "SeriLink.exe"
 
@@ -20,6 +20,7 @@ AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
+UninstallDisplayName={#MyAppName}
 DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
