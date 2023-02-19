@@ -3,7 +3,7 @@
 
 ; Update version in Properties/AssemblyInfo.cs
 #define MyAppName "SeriLink Serial Monitor"
-#define MyAppVersion "0.0.3.0"
+#define MyAppVersion "0.0.4.0"
 #define MyAppPublisher "Muhammad Fareez Iqmal"
 #define MyAppURL "https://github.com/iqfareez/SeriLink"
 #define MyAppExeName "SeriLink.exe"
