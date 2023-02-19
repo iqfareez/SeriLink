@@ -64,6 +64,25 @@ namespace SeriLink
                 e.SuppressKeyPress = true; 
                 input_textbox.Clear();
             } 
+            
+            // Add support for CTRL+Backspace  
+            // Thanks https://positivetinker.com/adding-ctrl-a-and-ctrl-backspace-support-to-the-winforms-textbox-control
+            if (e.Control && e.KeyCode == Keys.Back)  
+            {  
+                e.SuppressKeyPress = true;    
+                if (input_textbox.SelectionStart > 0)  
+                {  
+                    /*  
+                     * Piggyback off of the supported "CTRL + Left Cursor" feature.  
+                     * Does not need to send {CTRL}, because the user is currently holding {CTRL}.  
+                     * Uses {DEL} rather than {BKSP} in order to avoid creating an infinite loop.  
+                     * NOTE: {DEL} has the side effect of deleting text to the right if the cursor is  
+                     *       already as far left as it can go, since no text will be selected by {LEFT}.  
+                     *       The .SelectionStart > 0 condition prevents this side effect.  
+                     */  
+                    SendKeys.Send("+{LEFT}{DEL}");  
+                }  
+            }  
         }
 
         private void clearConsoleButton_Click(object sender, EventArgs e)
