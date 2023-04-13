@@ -43,13 +43,14 @@
             this.connectButton = new System.Windows.Forms.Button();
             this.showInConsoleCheckbox = new System.Windows.Forms.CheckBox();
             this.monitorTextbox = new System.Windows.Forms.RichTextBox();
+            this.timestampCheckbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // sendButton
             // 
             this.sendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.sendButton.Enabled = false;
-            this.sendButton.Location = new System.Drawing.Point(588, 16);
+            this.sendButton.Location = new System.Drawing.Point(596, 16);
             this.sendButton.Name = "sendButton";
             this.sendButton.Size = new System.Drawing.Size(112, 34);
             this.sendButton.TabIndex = 0;
@@ -64,14 +65,14 @@
             this.input_textbox.Location = new System.Drawing.Point(12, 16);
             this.input_textbox.Name = "input_textbox";
             this.input_textbox.ReadOnly = true;
-            this.input_textbox.Size = new System.Drawing.Size(570, 27);
+            this.input_textbox.Size = new System.Drawing.Size(578, 27);
             this.input_textbox.TabIndex = 1;
             this.input_textbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.input_textbox_KeyDown);
             // 
             // clearConsoleButton
             // 
             this.clearConsoleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.clearConsoleButton.Location = new System.Drawing.Point(585, 430);
+            this.clearConsoleButton.Location = new System.Drawing.Point(593, 462);
             this.clearConsoleButton.Name = "clearConsoleButton";
             this.clearConsoleButton.Size = new System.Drawing.Size(115, 32);
             this.clearConsoleButton.TabIndex = 4;
@@ -96,7 +97,7 @@
             this.lineEndingComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lineEndingComboBox.FormattingEnabled = true;
             this.lineEndingComboBox.Items.AddRange(new object[] { "None", "NewLine", "Carriage Return", "NL & CR" });
-            this.lineEndingComboBox.Location = new System.Drawing.Point(588, 53);
+            this.lineEndingComboBox.Location = new System.Drawing.Point(596, 53);
             this.lineEndingComboBox.Name = "lineEndingComboBox";
             this.lineEndingComboBox.Size = new System.Drawing.Size(112, 24);
             this.lineEndingComboBox.TabIndex = 6;
@@ -106,7 +107,7 @@
             this.portsComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.portsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.portsComboBox.FormattingEnabled = true;
-            this.portsComboBox.Location = new System.Drawing.Point(135, 435);
+            this.portsComboBox.Location = new System.Drawing.Point(135, 467);
             this.portsComboBox.Name = "portsComboBox";
             this.portsComboBox.Size = new System.Drawing.Size(92, 24);
             this.portsComboBox.TabIndex = 7;
@@ -118,7 +119,7 @@
             this.baudComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.baudComboBox.FormattingEnabled = true;
             this.baudComboBox.Items.AddRange(new object[] { "300", "600", "1200", "2400", "4800", "9600", "14400", "19200", "28800", "38400", "57600", "115200" });
-            this.baudComboBox.Location = new System.Drawing.Point(285, 435);
+            this.baudComboBox.Location = new System.Drawing.Point(285, 467);
             this.baudComboBox.Name = "baudComboBox";
             this.baudComboBox.Size = new System.Drawing.Size(74, 24);
             this.baudComboBox.TabIndex = 8;
@@ -126,7 +127,7 @@
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.Location = new System.Drawing.Point(235, 435);
+            this.label1.Location = new System.Drawing.Point(235, 467);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 23);
             this.label1.TabIndex = 9;
@@ -136,7 +137,7 @@
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.Location = new System.Drawing.Point(92, 435);
+            this.label2.Location = new System.Drawing.Point(92, 467);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 23);
             this.label2.TabIndex = 10;
@@ -146,7 +147,7 @@
             // refreshButton
             // 
             this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.refreshButton.Location = new System.Drawing.Point(12, 430);
+            this.refreshButton.Location = new System.Drawing.Point(12, 462);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(74, 32);
             this.refreshButton.TabIndex = 11;
@@ -158,7 +159,7 @@
             // 
             this.connectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.connectButton.Enabled = false;
-            this.connectButton.Location = new System.Drawing.Point(365, 430);
+            this.connectButton.Location = new System.Drawing.Point(365, 462);
             this.connectButton.Name = "connectButton";
             this.connectButton.Size = new System.Drawing.Size(87, 32);
             this.connectButton.TabIndex = 12;
@@ -185,15 +186,27 @@
             this.monitorTextbox.Location = new System.Drawing.Point(12, 83);
             this.monitorTextbox.Name = "monitorTextbox";
             this.monitorTextbox.ReadOnly = true;
-            this.monitorTextbox.Size = new System.Drawing.Size(686, 341);
+            this.monitorTextbox.Size = new System.Drawing.Size(694, 373);
             this.monitorTextbox.TabIndex = 14;
             this.monitorTextbox.Text = "";
+            // 
+            // timestampCheckbox
+            // 
+            this.timestampCheckbox.Checked = true;
+            this.timestampCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.timestampCheckbox.Location = new System.Drawing.Point(295, 53);
+            this.timestampCheckbox.Name = "timestampCheckbox";
+            this.timestampCheckbox.Size = new System.Drawing.Size(148, 24);
+            this.timestampCheckbox.TabIndex = 15;
+            this.timestampCheckbox.Text = "Timestamp";
+            this.timestampCheckbox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(710, 470);
+            this.ClientSize = new System.Drawing.Size(718, 502);
+            this.Controls.Add(this.timestampCheckbox);
             this.Controls.Add(this.monitorTextbox);
             this.Controls.Add(this.showInConsoleCheckbox);
             this.Controls.Add(this.connectButton);
@@ -214,6 +227,8 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.CheckBox timestampCheckbox;
 
         private System.Windows.Forms.RichTextBox monitorTextbox;
 

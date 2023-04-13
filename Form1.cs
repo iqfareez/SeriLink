@@ -15,7 +15,7 @@ namespace SeriLink
         // HashSet of string to store the sent commands
         private HashSet<string> _sentCommands = new HashSet<string>();
         private int _sentCommandsIndex;
-
+        
         public Form1()
         {
             InitializeComponent();
@@ -193,7 +193,7 @@ namespace SeriLink
                 monitorTextbox.SelectionFont = new Font(monitorTextbox.Font, FontStyle.Italic);
                 monitorTextbox.AppendText(myMessage);
             }
-            
+
             // add send message to the sent history if not empty
             if (myMessage.Trim().Length > 0) _sentCommands.Add(myMessage);
 
@@ -204,6 +204,17 @@ namespace SeriLink
 
         private void MySerial_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            // show timestamp if enabled
+            if (timestampCheckbox.Checked)
+            {
+                Color timestampColor = Color.Gray;
+                monitorTextbox.SelectionColor = timestampColor;
+                monitorTextbox.SelectionFont = new Font(monitorTextbox.Font, FontStyle.Italic);
+                monitorTextbox.AppendText(DateTime.Now.ToString("HH:mm:ss.fff") + " ");
+            }
+            Color messageColor = Color.Black;
+            monitorTextbox.SelectionColor = messageColor;
+            monitorTextbox.SelectionFont = new Font(monitorTextbox.Font, FontStyle.Regular);
             monitorTextbox.AppendText(_mySerial.ReadExisting());
         }
 
