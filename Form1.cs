@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,11 +13,11 @@ namespace SeriLink
     {
         private SerialPort _mySerial;
         private bool _connectedSerial;
-        
+
         // HashSet of string to store the sent commands
         private HashSet<string> _sentCommands = new HashSet<string>();
         private int _sentCommandsIndex;
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -36,7 +38,7 @@ namespace SeriLink
         private void input_textbox_KeyDown(object sender, KeyEventArgs e)
         {
             if (!_connectedSerial) return;
-            
+
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true; // prevent 'Ding' sound when press enter
@@ -51,27 +53,27 @@ namespace SeriLink
             {
                 GoUpHistory();
             }
-            
+
             // same as arrow up key, but go through the history opposite direction
             if (e.KeyCode == Keys.Down)
             {
                 GoDownHistory();
             }
-            
+
             // clear the textbox
             if (e.KeyCode == Keys.Escape)
             {
-                e.SuppressKeyPress = true; 
+                e.SuppressKeyPress = true;
                 input_textbox.Clear();
-            } 
-            
+            }
+
             // Add support for CTRL+Backspace  
             // Thanks https://positivetinker.com/adding-ctrl-a-and-ctrl-backspace-support-to-the-winforms-textbox-control
-            if (e.Control && e.KeyCode == Keys.Back)  
-            {  
-                e.SuppressKeyPress = true;    
-                if (input_textbox.SelectionStart > 0)  
-                {  
+            if (e.Control && e.KeyCode == Keys.Back)
+            {
+                e.SuppressKeyPress = true;
+                if (input_textbox.SelectionStart > 0)
+                {
                     /*  
                      * Piggyback off of the supported "CTRL + Left Cursor" feature.  
                      * Does not need to send {CTRL}, because the user is currently holding {CTRL}.  
@@ -79,10 +81,10 @@ namespace SeriLink
                      * NOTE: {DEL} has the side effect of deleting text to the right if the cursor is  
                      *       already as far left as it can go, since no text will be selected by {LEFT}.  
                      *       The .SelectionStart > 0 condition prevents this side effect.  
-                     */  
-                    SendKeys.Send("+{LEFT}{DEL}");  
-                }  
-            }  
+                     */
+                    SendKeys.Send("+{LEFT}{DEL}");
+                }
+            }
         }
 
         private void clearConsoleButton_Click(object sender, EventArgs e)
@@ -146,7 +148,7 @@ namespace SeriLink
                 MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+
             _mySerial.DataReceived += MySerial_DataReceived;
 
             // enable input button and disable refresh button
@@ -212,6 +214,7 @@ namespace SeriLink
                 monitorTextbox.SelectionFont = new Font(monitorTextbox.Font, FontStyle.Italic);
                 monitorTextbox.AppendText(DateTime.Now.ToString("HH:mm:ss.fff") + " ");
             }
+
             Color messageColor = Color.Black;
             monitorTextbox.SelectionColor = messageColor;
             monitorTextbox.SelectionFont = new Font(monitorTextbox.Font, FontStyle.Regular);
@@ -245,10 +248,10 @@ namespace SeriLink
         {
             // decrement the index
             _sentCommandsIndex--;
-                    
+
             // if reach the beginning, reset to the last
             if (_sentCommandsIndex < 0) _sentCommandsIndex = _sentCommands.Count - 1;
-            
+
             // get the next command from the list based on index
             var nextCommand = _sentCommands.ElementAtOrDefault(_sentCommandsIndex);
             if (nextCommand != null)
@@ -260,14 +263,14 @@ namespace SeriLink
                 input_textbox.SelectionLength = 0;
             }
         }
-        
+
         private void GoDownHistory()
         {
             _sentCommandsIndex++;
-                
+
             // if reach to the end, reset to the first
             if (_sentCommandsIndex == _sentCommands.Count) _sentCommandsIndex = 0;
-            
+
             var nextCommand = _sentCommands.ElementAtOrDefault(_sentCommandsIndex);
             if (nextCommand != null)
             {
@@ -275,6 +278,49 @@ namespace SeriLink
                 input_textbox.SelectionStart = input_textbox.Text.Length;
                 input_textbox.SelectionLength = 0;
             }
+        }
+
+        private void exportConsoleOutputToTXTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Get All the text from the console
+            var consoleText = monitorTextbox.Text;
+
+            // check if text is empty
+            if (consoleText.Length == 0)
+            {
+                MessageBox.Show("Nothing in console to export", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
+            // get sanitized current date time
+            var sanitizedDateTime = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
+
+            // create a save file dialog
+            var saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Text File|*.txt",
+                Title = "Save Console Output",
+                FileName = $"Serilink Console {sanitizedDateTime}.txt"
+            };
+
+            // show the dialog
+            if (saveFileDialog.ShowDialog() != DialogResult.OK) return;
+
+            // create a stream writer
+            using (var sw = new StreamWriter(saveFileDialog.FileName))
+            {
+                // write the text to the file
+                sw.Write(consoleText);
+            }
+
+            // show success message
+            MessageBox.Show("Console output exported successfully", "Success", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+
+        private void gitHubToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/iqfareez/SeriLink");
         }
     }
 }
