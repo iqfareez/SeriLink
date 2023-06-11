@@ -1,4 +1,4 @@
-﻿![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
+![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
 ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 
@@ -8,7 +8,7 @@ SeriLink is an app that allows users to send and receive messages via a COM port
 
 <div style="display: flex; justify-content: center; align-items: center;">
   <div style="float: left; box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2); margin: 10px;">
-    <img src="https://i.imgur.com/uQWQLUZ.png" style="display: block;">
+    <img src="https://github.com/iqfareez/SeriLink/assets/60868965/3da2a025-2d1a-4030-a14b-a4e2f1710c64" style="display: block;">
   </div>
 </div>
 
